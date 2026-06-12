@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrownCha - Trà Gạo Lứt Thảo Mộc</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand">BrownCha</a>
+      <nav class="site-nav">
+        <a href="#products">Sản phẩm</a>
+        <a href="#about">Về chúng tôi</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+      <button class="cart-button" id="cartButton">
+        <span class="cart-icon">🛒</span>
+        <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div>
+          <span class="eyebrow">Thương hiệu trà gạo lứt BrownCha</span>
+          <h1>Trà thảo mộc lành mạnh, ngon miệng và tiện dụng</h1>
+          <p>Chọn hương vị tự nhiên, tốt cho sức khỏe, phù hợp để tặng và dùng hàng ngày.</p>
+          <div class="hero-actions">
+            <a href="#products" class="button button-primary">Xem sản phẩm</a>
+            <button class="button button-secondary" id="heroCartOpen">Mở giỏ hàng</button>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="product-badge">Sản phẩm mới</div>
+          <div class="hero-box">
+            <div class="hero-drink"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Sản phẩm</span>
+          <h2>Chọn hương vị trà gạo lứt thảo mộc</h2>
+        </div>
+        <div class="product-grid" id="productGrid">
+          <!-- Product cards injected by script -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="about">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">Về BrownCha</span>
+          <h2>Thương hiệu chăm sóc sức khỏe từ trà gạo lứt</h2>
+          <p>BrownCha mang đến những sản phẩm thảo mộc tự nhiên, không chất bảo quản, giúp cân bằng cơ thể và giữ trọn hương vị truyền thống.</p>
+          <ul class="feature-list">
+            <li>Nguyên liệu thiên nhiên</li>
+            <li>Đóng gói tiện lợi</li>
+            <li>Phù hợp mọi lứa tuổi</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <div class="about-card">Trà gạo lứt</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-card">
+        <div>
+          <span class="eyebrow">Liên hệ</span>
+          <h2>Đặt hàng hoặc tư vấn sản phẩm</h2>
+          <p>Bạn có thể gửi tin nhắn tới chúng tôi để nhận thông tin khuyến mãi và đơn hàng nhanh chóng.</p>
+        </div>
+        <div>
+          <a href="mailto:contact@browncha.vn" class="button button-primary">Gửi email</a>
+          <p class="contact-info">Hoặc gọi <strong>0123 456 789</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Giỏ hàng của bạn</h3>
+      <button class="close-button" id="closeCart">×</button>
+    </div>
+    <div class="cart-content" id="cartContent">
+      <p class="empty-cart">Giỏ hàng đang trống.</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Tổng cộng:</span>
+        <span id="cartTotal">0</span>
+      </div>
+      <button class="button button-primary" id="checkoutButton">Thanh toán</button>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 BrownCha. Trà gạo lứt thảo mộc cho lối sống khỏe mạnh.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
