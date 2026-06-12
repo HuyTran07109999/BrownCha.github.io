@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8efe2"/>
+      <stop offset="100%" stop-color="#f2d6b7"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6f8c52"/>
+      <stop offset="100%" stop-color="#c4d9a3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="40" fill="url(#bg)"/>
+  <circle cx="550" cy="360" r="200" fill="#fff3e6"/>
+  <path d="M450 220C480 170 555 160 620 210C685 260 720 355 695 440C670 525 555 560 490 515C425 470 420 320 450 220Z" fill="url(#leaf)"/>
+  <path d="M625 195C660 145 760 150 820 210C880 270 885 360 845 420C805 480 715 495 675 455C635 415 610 255 625 195Z" fill="url(#leaf)" opacity="0.95"/>
+  <rect x="840" y="520" width="240" height="180" rx="30" fill="#fff" opacity="0.75"/>
+  <path d="M855 530C880 500 935 490 985 520C1035 550 1050 620 1015 650C980 680 910 675 875 640C840 605 830 560 855 530Z" fill="#e6c3a0"/>
+  <rect x="190" y="440" width="280" height="300" rx="40" fill="#fff" opacity="0.9"/>
+  <path d="M240 510C260 485 300 475 340 510C380 545 390 605 365 630C340 655 285 650 255 620C225 590 220 535 240 510Z" fill="#8a5c36"/>
+  <path d="M260 492C287 465 332 460 365 485C398 510 410 555 388 585C366 615 325 617 295 595C265 573 250 519 260 492Z" fill="#d9b28c"/>
+  <text x="220" y="160" font-family="Inter, sans-serif" font-size="72" font-weight="700" fill="#7c5e34">BrownCha</text>
+  <text x="220" y="240" font-family="Inter, sans-serif" font-size="42" fill="#5d4d44">Trà gạo lứt thảo mộc</text>
+  <text x="220" y="300" font-family="Inter, sans-serif" font-size="28" fill="#5d4d44">Tự nhiên - thanh mát - giàu năng lượng</text>
+</svg>
