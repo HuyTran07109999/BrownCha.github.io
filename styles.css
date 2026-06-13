@@ -72,9 +72,14 @@ button, .button {
 }
 
 .brand-text {
-  font-weight: 700;
-  color: var(--accent);
-  font-size: 1.25rem;
+  display: none;
+}
+
+.brand-name-image {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .site-nav {
@@ -580,4 +585,5 @@ button, .button {
 @media (max-width: 420px) {
   .brand-text { display: none; }
   .site-logo { width: 40px; height: 40px; }
+  .brand-name-image { height: 36px; }
 }
