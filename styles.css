@@ -65,8 +65,9 @@ button, .button {
 
 .site-logo {
   width: 48px;
-  height: auto;
-  display: block;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .brand-text {
@@ -577,5 +578,5 @@ button, .button {
 
 @media (max-width: 420px) {
   .brand-text { display: none; }
-  .site-logo { width: 40px; }
+  .site-logo { width: 40px; height: 40px; }
 }
