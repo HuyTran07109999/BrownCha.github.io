@@ -40,6 +40,8 @@ const cartButton = document.getElementById("cartButton");
 const closeCart = document.getElementById("closeCart");
 const checkoutButton = document.getElementById("checkoutButton");
 const heroCartOpen = document.getElementById("heroCartOpen");
+const menuToggle = document.getElementById("menuToggle");
+const siteHeader = document.querySelector(".site-header");
 
 function formatPrice(value) {
   return new Intl.NumberFormat("vi-VN", {
@@ -161,6 +163,22 @@ checkoutButton.addEventListener("click", () => {
   renderCart();
   closeCartPanel();
 });
+
+// Mobile menu toggle
+if (menuToggle && siteHeader) {
+  menuToggle.addEventListener("click", () => {
+    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!expanded));
+    siteHeader.classList.toggle("mobile-open", !expanded);
+  });
+
+  document.querySelectorAll('.site-nav a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      siteHeader.classList.remove('mobile-open');
+    });
+  });
+}
 
 renderProducts();
 renderCart();

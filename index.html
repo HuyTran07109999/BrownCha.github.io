@@ -7,18 +7,29 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-inner">
-      <a href="#home" class="brand">BrownCha</a>
-      <nav class="site-nav">
+      <a href="#home" class="brand">
+        <img src="images/Logo3.png" alt="BrownCha" class="site-logo">
+        <span class="brand-text">BrownCha</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-controls="siteNav" aria-expanded="false" aria-label="Mở điều hướng">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
         <a href="#products">Sản phẩm</a>
         <a href="#about">Về chúng tôi</a>
         <a href="#contact">Liên hệ</a>
       </nav>
-      <button class="cart-button" id="cartButton">
-        <span class="cart-icon">🛒</span>
-        <span id="cartCount">0</span>
-      </button>
+
+      <div class="header-actions">
+        <button class="cart-button" id="cartButton" aria-label="Mở giỏ hàng">
+          <span class="cart-icon">🛒</span>
+          <span id="cartCount">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
