@@ -22,6 +22,11 @@ const heroCartOpen = document.getElementById("heroCartOpen");
 const menuToggle = document.getElementById("menuToggle");
 const siteHeader = document.querySelector(".site-header");
 
+// Optional EmailJS config: fill these values to enable automatic sending of a thank-you email
+const EMAILJS_USER_ID = ""; // e.g. "user_xxx"
+const EMAILJS_SERVICE_ID = ""; // e.g. "service_xxx"
+const EMAILJS_TEMPLATE_ID = ""; // e.g. "template_xxx"
+
 function formatPrice(value) {
   return new Intl.NumberFormat("vi-VN", {
     style: "currency",
@@ -147,6 +152,7 @@ function showCheckoutForm() {
     <form id="checkoutForm" class="checkout-form">
       <h4>Thông tin đặt hàng</h4>
       <div class="form-row"><label>Tên<br><input name="name" required></label></div>
+      <div class="form-row"><label>Email<br><input name="email" type="email" required></label></div>
       <div class="form-row"><label>Điện thoại<br><input name="phone" required></label></div>
       <div class="form-row"><label>Địa chỉ<br><input name="address" required></label></div>
       <div class="form-row"><label>Ghi chú<br><textarea name="notes"></textarea></label></div>
@@ -182,12 +188,17 @@ function submitCheckout(e) {
   const form = e.target;
   const fd = new FormData(form);
   const name = (fd.get('name') || '').trim();
+  const email = (fd.get('email') || '').trim();
   const phone = (fd.get('phone') || '').trim();
   const address = (fd.get('address') || '').trim();
   const notes = (fd.get('notes') || '').trim();
   const payment = fd.get('payment') || 'COD';
   if (!name || !phone || !address) {
     alert('Vui lòng điền tên, điện thoại và địa chỉ.');
+    return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Vui lòng nhập email hợp lệ.');
     return;
   }
 
@@ -211,7 +222,47 @@ function submitCheckout(e) {
   cart.clear();
   renderCart();
   checkoutButton.style.display = '';
-  cartContent.innerHTML = `<p class="checkout-success">Cảm ơn ${name}! Đơn hàng của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ sớm. <a href="${mailto}">Gửi email xác nhận</a></p>`;
+  cartContent.innerHTML = `<p class="checkout-success">Cảm ơn ${name}! Đơn hàng của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ sớm.</p>`;
+
+  // send thank-you email via EmailJS if configured
+  if (EMAILJS_USER_ID && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID) {
+    (function(){
+      if (!window.emailjs) {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.emailjs.com/sdk/3.2.0/email.min.js';
+        s.onload = () => {
+          emailjs.init(EMAILJS_USER_ID);
+          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            to_name: name,
+            to_email: email,
+            order_id: order.id,
+            order_total: formatPrice(total),
+            order_body: body,
+          }).then(()=>{
+            cartContent.innerHTML += `<p class="checkout-success">Email xác nhận đã được gửi tới ${email}.</p>`;
+          }).catch(()=>{
+            cartContent.innerHTML += `<p class="checkout-success">Không thể gửi email tự động — bạn có thể gửi xác nhận bằng tay.</p>`;
+          });
+        };
+        document.head.appendChild(s);
+      } else {
+        emailjs.init(EMAILJS_USER_ID);
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_name: name,
+          to_email: email,
+          order_id: order.id,
+          order_total: formatPrice(total),
+          order_body: body,
+        }).then(()=>{
+          cartContent.innerHTML += `<p class="checkout-success">Email xác nhận đã được gửi tới ${email}.</p>`;
+        }).catch(()=>{
+          cartContent.innerHTML += `<p class="checkout-success">Không thể gửi email tự động — bạn có thể gửi xác nhận bằng tay.</p>`;
+        });
+      }
+    })();
+  } else {
+    cartContent.innerHTML += `<p class="checkout-success">Bạn cũng có thể <a href="${mailto}">gửi email xác nhận</a> cho cửa hàng.</p>`;
+  }
 }
 
 // Mobile menu toggle
