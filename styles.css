@@ -509,56 +509,6 @@ button, .button {
   line-height: 1.7;
 }
 
-/* Social proof / testimonials */
-.social-proof {
-  margin-top: 1.5rem;
-  background: #fff;
-  border: 1px solid rgba(124,94,52,0.08);
-  border-radius: 1.25rem;
-  padding: 1.5rem;
-  box-shadow: 0 20px 50px rgba(45,42,40,0.06);
-}
-
-.sp-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.rating {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.rating .avg { font-size: 1.25rem; }
-.rating .stars { color: #f1c40f; font-size: 1rem; letter-spacing: 0.06em; }
-.rating .count { color: var(--muted); font-weight: 600; }
-
-.sp-lead { margin: 0; color: var(--muted); }
-
-.testimonials {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.testimonial {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1rem;
-}
-
-.testimonial .quote { margin: 0 0 0.5rem; color: var(--text); }
-.testimonial .author { margin: 0; color: var(--muted); font-size: 0.9rem; }
-
-@media (max-width: 900px) {
-  .testimonials { grid-template-columns: 1fr; }
-}
 
 .about-image {
   display: flex;
@@ -799,6 +749,19 @@ button, .button {
   .site-header.mobile-open .site-nav {
     display: flex;
   }
+}
+
+/* Checkout form styles */
+.checkout-form h4 { margin: 0 0 0.5rem; }
+.checkout-form .form-row { margin-bottom: 0.75rem; }
+.checkout-form input,
+.checkout-form textarea { width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 0.5rem; }
+.checkout-summary { background: #fff; border: 1px solid rgba(124,94,52,0.06); padding: 0.75rem; border-radius: 0.75rem; margin: 0.75rem 0; }
+.checkout-actions { display: flex; gap: 0.75rem; align-items: center; }
+.checkout-success { color: var(--accent); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .products-layout { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {

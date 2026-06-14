@@ -137,11 +137,82 @@ checkoutButton.addEventListener("click", () => {
     alert("Giỏ hàng trống. Vui lòng thêm sản phẩm.");
     return;
   }
-  alert("Cảm ơn bạn đã đặt hàng! Chúng tôi sẽ liên hệ bạn sớm.");
+  showCheckoutForm();
+});
+
+function showCheckoutForm() {
+  const items = Array.from(cart.values());
+  const total = items.reduce((sum, it) => sum + it.price * it.quantity, 0);
+  cartContent.innerHTML = `
+    <form id="checkoutForm" class="checkout-form">
+      <h4>Thông tin đặt hàng</h4>
+      <div class="form-row"><label>Tên<br><input name="name" required></label></div>
+      <div class="form-row"><label>Điện thoại<br><input name="phone" required></label></div>
+      <div class="form-row"><label>Địa chỉ<br><input name="address" required></label></div>
+      <div class="form-row"><label>Ghi chú<br><textarea name="notes"></textarea></label></div>
+      <div class="form-row">
+        <label>Phương thức thanh toán</label><br>
+        <label><input type="radio" name="payment" value="COD" checked> Thanh toán khi nhận (COD)</label>
+        <label><input type="radio" name="payment" value="Bank"> Chuyển khoản</label>
+      </div>
+      <div class="checkout-summary">
+        <h5>Tóm tắt đơn hàng</h5>
+        ${items.map(it => `<div>${it.quantity} x ${it.name} — ${formatPrice(it.price)} = ${formatPrice(it.price * it.quantity)}</div>`).join('')}
+        <div class="checkout-total"><strong>Tổng:</strong> ${formatPrice(total)}</div>
+      </div>
+      <div class="checkout-actions">
+        <button type="submit" class="button button-primary">Xác nhận đặt hàng</button>
+        <button type="button" id="checkoutCancel" class="button button-secondary">Quay lại</button>
+      </div>
+    </form>
+  `;
+
+  checkoutButton.style.display = 'none';
+
+  const form = document.getElementById('checkoutForm');
+  form.addEventListener('submit', submitCheckout);
+  document.getElementById('checkoutCancel').addEventListener('click', () => {
+    checkoutButton.style.display = '';
+    renderCart();
+  });
+}
+
+function submitCheckout(e) {
+  e.preventDefault();
+  const form = e.target;
+  const fd = new FormData(form);
+  const name = (fd.get('name') || '').trim();
+  const phone = (fd.get('phone') || '').trim();
+  const address = (fd.get('address') || '').trim();
+  const notes = (fd.get('notes') || '').trim();
+  const payment = fd.get('payment') || 'COD';
+  if (!name || !phone || !address) {
+    alert('Vui lòng điền tên, điện thoại và địa chỉ.');
+    return;
+  }
+
+  const items = Array.from(cart.values());
+  const total = items.reduce((s, it) => s + it.price * it.quantity, 0);
+
+  const orders = JSON.parse(localStorage.getItem('browncha_orders') || '[]');
+  const order = { id: Date.now(), name, phone, address, notes, payment, items, total, created: new Date().toISOString() };
+  orders.push(order);
+  localStorage.setItem('browncha_orders', JSON.stringify(orders));
+
+  // Prepare mailto fallback
+  const subject = encodeURIComponent('Đơn hàng BrownCha #' + order.id);
+  let body = `Đơn hàng BrownCha\nMã: ${order.id}\nTên: ${name}\nĐiện thoại: ${phone}\nĐịa chỉ: ${address}\nPhương thức: ${payment}\nGhi chú: ${notes}\n\nChi tiết:\n`;
+  order.items.forEach(it => {
+    body += `${it.quantity} x ${it.name} - ${formatPrice(it.price)} = ${formatPrice(it.price * it.quantity)}\n`;
+  });
+  body += `\nTổng: ${formatPrice(total)}\n\nCám ơn!`;
+  const mailto = `mailto:browncha.1028@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+
   cart.clear();
   renderCart();
-  closeCartPanel();
-});
+  checkoutButton.style.display = '';
+  cartContent.innerHTML = `<p class="checkout-success">Cảm ơn ${name}! Đơn hàng của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ sớm. <a href="${mailto}">Gửi email xác nhận</a></p>`;
+}
 
 // Mobile menu toggle
 if (menuToggle && siteHeader) {
