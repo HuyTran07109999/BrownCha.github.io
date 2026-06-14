@@ -4,7 +4,7 @@ const products = [
     name: "Trà gạo lứt thảo mộc",
     description: "Sản phẩm duy nhất của BrownCha, tập trung hoàn thiện hương vị và công dụng thanh lọc, giảm stress, cân bằng cơ thể.",
     price: 129000,
-    image: "images/product-1.svg",
+    image: "images/product1.jpg",
   },
 ];
 
