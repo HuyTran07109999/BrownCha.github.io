@@ -2,30 +2,9 @@ const products = [
   {
     id: 1,
     name: "Trà gạo lứt thảo mộc",
-    description: "Hương thanh, giúp giải độc và làm dịu cơ thể.",
+    description: "Sản phẩm duy nhất của BrownCha, tập trung hoàn thiện hương vị và công dụng thanh lọc, giảm stress, cân bằng cơ thể.",
     price: 129000,
     image: "images/product-1.svg",
-  },
-  {
-    id: 2,
-    name: "Trà gạo lứt hồng sâm",
-    description: "Bổ sung năng lượng, ấm bụng cho ngày dài.",
-    price: 149000,
-    image: "images/product-2.svg",
-  },
-  {
-    id: 3,
-    name: "Trà gạo lứt hoa cúc",
-    description: "Dành cho giấc ngủ sâu và thư giãn tinh thần.",
-    price: 119000,
-    image: "images/product-3.svg",
-  },
-  {
-    id: 4,
-    name: "Combo hộp quà BrownCha",
-    description: "Lựa chọn quà tặng sang trọng cho người thân và bạn bè.",
-    price: 189000,
-    image: "images/product-4.svg",
   },
 ];
 
